@@ -1,8 +1,9 @@
+import parser.inputCleaner
 import parser.parseFile
-import solutions._2015.calculateLowestHouseNumber
+import solutions._2015.calculateLowestCostRPG
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateLowestHouseNumber(parseFile(2015, 20)))
+    println(calculateLowestCostRPG(inputCleaner(parseFile(2015, 21))))
     println((System.currentTimeMillis() - startTime))
 }
