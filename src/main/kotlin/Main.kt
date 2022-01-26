@@ -1,11 +1,8 @@
-import parser.inputCleaner
 import parser.parseFile
-import solutions._2015.calculateLowestManaSpent
-import solutions._2015.calculateSmallestQuantumElement
-import solutions._2015.calculateTuringLock
+import solutions._2015.findSantaWeatherMachineCode
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateSmallestQuantumElement(inputCleaner(parseFile(2015, 24))))
+    println(findSantaWeatherMachineCode(parseFile(2015, 25)))
     println((System.currentTimeMillis() - startTime))
 }
