@@ -1,9 +1,9 @@
-import parser.inputCleaner
 import parser.parseFile
-import solutions._2022.calculateMostCaloriesTopThreeElves
+import solutions._2015.calculateAccountingSum
+import solutions._2015.calculateAccountingSumNoRed
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateMostCaloriesTopThreeElves(inputCleaner(parseFile(2022, 1), lineJumps = 2)))
+    println(calculateAccountingSumNoRed(parseFile(2015, 12)))
     println((System.currentTimeMillis() - startTime))
 }
