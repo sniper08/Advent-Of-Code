@@ -96,6 +96,7 @@ data class WizardSimulator(
             Effect.SHIELD -> shieldActive = effect.turns
             Effect.POISON -> poisonActive = effect.turns
             Effect.RECHARGE -> rechargeActive = effect.turns
+            else -> { }
         }
         mana -= spell.mana
         manaSpent += spell.mana

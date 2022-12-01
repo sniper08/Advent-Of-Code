@@ -112,6 +112,7 @@ data class SpecialPair(
                 }
                 parentPair?.catchExplosion(yB, parentRelation, parentRelation!!)
             }
+            else -> { }
         }
     }
 

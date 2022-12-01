@@ -334,6 +334,7 @@ fun findOperations(checked: Scanner, unChecked: Scanner, indexes: List<Indexes>,
                 firstValue = checked.beacons.elementAt(foundIndex.firstIndex).z
                 secondValue = unChecked.beacons.elementAt(foundIndex.secondIndex).z
             }
+            else -> { }
         }
 
         sums.add(AxisValue.fromAxis(axis, SUM, firstValue + secondValue))

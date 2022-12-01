@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.10"
-    kotlin("plugin.serialization") version "1.3.71"
+    kotlin("jvm") version "1.7.20"
+    kotlin("plugin.serialization") version "1.7.22"
     application
 }
 
@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx", "kotlinx-serialization-runtime", "0.20.0")
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.5.2")
+    implementation("org.jetbrains.kotlinx", "kotlinx-serialization-runtime", "1.0-M1-1.4.0-rc")
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.4")
     testImplementation(kotlin("test"))
 }
 
