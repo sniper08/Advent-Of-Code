@@ -1,10 +1,11 @@
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2016.Protocol
-import solutions._2016.findIPv7AddressesSupporting
+import solutions._2022.MyPlay
+import solutions._2022.calculatePointsRockPaperScissors
+import solutions._2022.calculatePointsRockPaperScissorsImproved
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findIPv7AddressesSupporting(Protocol.SSL, inputCleaner(parseFile(2016, 7))))
+    println(calculatePointsRockPaperScissors(inputCleaner(parseFile(2022, 2))))
     println((System.currentTimeMillis() - startTime))
 }
