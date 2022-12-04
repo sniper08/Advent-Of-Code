@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculatePrioritiesSumByType(inputCleaner(parseFile(2022, 3))))
+    println(findOverlappingAssignments(inputCleaner(parseFile(2022, 4))))
     println((System.currentTimeMillis() - startTime))
 }
