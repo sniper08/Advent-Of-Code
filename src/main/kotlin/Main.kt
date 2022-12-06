@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findErrorCorrectedMessage(inputCleaner(parseFile(2016, 6))))
+    println(findDecompressedSequenceLengthV2(parseFile(2016, 9)))
     println((System.currentTimeMillis() - startTime))
 }
