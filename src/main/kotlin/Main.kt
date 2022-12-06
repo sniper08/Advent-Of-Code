@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findDecompressedSequenceLengthV2(parseFile(2016, 9)))
+    println(findTopCrateInSupplyStack(inputCleaner(parseFile(2022, 5), lineJumps = 2)))
     println((System.currentTimeMillis() - startTime))
 }
