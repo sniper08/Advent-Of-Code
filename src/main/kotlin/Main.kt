@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findStartOfPacketMarketInProtocol(parseFile(2022, 6), markerSize = 14))
+    println(findDirToDelete(inputCleaner(parseFile(2022, 7))))
     println((System.currentTimeMillis() - startTime))
 }
