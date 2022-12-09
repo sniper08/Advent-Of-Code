@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findDirToDelete(inputCleaner(parseFile(2022, 7))))
+    println(findHighestScenicScore(inputCleaner(parseFile(2022, 8))))
     println((System.currentTimeMillis() - startTime))
 }
