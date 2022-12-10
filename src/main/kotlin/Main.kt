@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findHighestScenicScore(inputCleaner(parseFile(2022, 8))))
+    println(findPositionsVisitedByTailBridge(inputCleaner(parseFile(2022, 9))))
     println((System.currentTimeMillis() - startTime))
 }
