@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findPositionsVisitedByTailBridge(inputCleaner(parseFile(2022, 9))))
+    println(findSignalStrengthsSum(inputCleaner(parseFile(2022, 10))))
     println((System.currentTimeMillis() - startTime))
 }
