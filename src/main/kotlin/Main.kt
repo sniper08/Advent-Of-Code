@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findLevelOfMonkeyBusiness(inputCleaner(parseFile(2022, 11), lineJumps = 2)))
+    println(findShortestHillRouteScenic(inputCleaner(parseFile(2022, 12))))
     println((System.currentTimeMillis() - startTime))
 }
