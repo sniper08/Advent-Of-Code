@@ -1,5 +1,9 @@
 package solutions._2015
 
+import getArray
+import getIntValue
+import getObject
+import getStringValue
 import kotlinx.serialization.json.*
 
 val NUMBER_REGEX = Regex("(-+)?(\\d+)")
@@ -38,10 +42,6 @@ fun JsonObject.findUsefulValues(usefulValues: MutableList<Int>) {
     }
 }
 
-fun JsonElement.getArray() = try { jsonArray } catch (e: Exception) { null }
-fun JsonElement.getObject() = try { jsonObject } catch (e: Exception) { null }
-fun JsonElement.getStringValue() = try { jsonPrimitive.content } catch (e: Exception) { null }
-fun JsonElement.getIntValue() = try { jsonPrimitive.intOrNull } catch (e: Exception) { null }
 fun JsonElement.addUsefulValues(usefulValues: MutableList<Int>) {
     getIntValue()
         ?.let { intValue -> usefulValues.add(intValue) }

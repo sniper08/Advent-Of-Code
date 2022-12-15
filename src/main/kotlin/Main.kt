@@ -5,6 +5,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findShortestHillRouteScenic(inputCleaner(parseFile(2022, 12))))
+    println(calculateSumOfCorrectlyPacketsIndices(inputCleaner(parseFile(2022, 13), lineJumps = 2)))
     println((System.currentTimeMillis() - startTime))
 }
