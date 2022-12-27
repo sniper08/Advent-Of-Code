@@ -4,6 +4,6 @@ import solutions._2022.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findDistressSignalTuningFrequency(inputCleaner(parseFile(2022, 15))))
+    println(calculateMostPressureReleased(inputCleaner(parseFile(2022, 16)), withElephant = true))
     println((System.currentTimeMillis() - startTime))
 }
