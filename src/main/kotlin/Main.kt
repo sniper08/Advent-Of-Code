@@ -1,9 +1,12 @@
 import parser.inputCleaner
 import parser.parseFile
+import solutions._2022.findEmptyGroundInGrove
 import solutions._2022.findForceFieldPassword
+import solutions._2022.findRoundsToNoMovesInGrove
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findForceFieldPassword(inputCleaner(parseFile(2022, 22), lineJumps = 2), inCube = true))
+    println(findEmptyGroundInGrove(inputCleaner(parseFile(2022, 23))))
     println((System.currentTimeMillis() - startTime))
 }
+
