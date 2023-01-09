@@ -1,12 +1,11 @@
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2022.findEmptyGroundInGrove
-import solutions._2022.findForceFieldPassword
-import solutions._2022.findRoundsToNoMovesInGrove
+import solutions._2022.findShortestToCrossValley
+import solutions._2022.findShortestToCrossValleyPickingUpSnack
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(findEmptyGroundInGrove(inputCleaner(parseFile(2022, 23))))
+    println(findShortestToCrossValleyPickingUpSnack(inputCleaner(parseFile(2022, 24))))
     println((System.currentTimeMillis() - startTime))
 }
 
