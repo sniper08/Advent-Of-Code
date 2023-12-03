@@ -1,5 +1,7 @@
 package solutions._2021
 
+import Coordinate
+
 typealias SquareGrid = Array<Array<Square>>
 
 data class Square(

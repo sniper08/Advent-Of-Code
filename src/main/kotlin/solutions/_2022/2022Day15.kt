@@ -1,6 +1,6 @@
 package solutions._2022
 
-import solutions._2021.Coordinate
+import Coordinate
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

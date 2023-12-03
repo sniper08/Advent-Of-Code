@@ -1,6 +1,6 @@
 package solutions._2015
 
-import solutions._2021.Coordinate
+import Coordinate
 
 const val NORTH = '^'
 const val SOUTH = 'v'

@@ -1,5 +1,6 @@
 package solutions._2021
 
+import Coordinate
 import kotlin.math.abs
 import kotlin.math.absoluteValue
 

@@ -1,5 +1,6 @@
 package solutions._2021
 
+import Coordinate
 import java.util.*
 
 typealias ChitonGrid = Array<Array<Chiton>>

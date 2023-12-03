@@ -1,12 +1,11 @@
 package solutions._2021
 
+import Coordinate
 import kotlin.math.abs
 
 typealias Grid = Array<Array<CheckPoint>>
 
 private const val MIN_CHECKED_TIMES = 2
-
-data class Coordinate(val x: Int, val y: Int)
 data class CheckPoint(var checked: Boolean = false, var timesChecked: Int = 0, var overlapCounted: Boolean = false) {
     fun overlapsAfterChecked(): Boolean {
         checked = true

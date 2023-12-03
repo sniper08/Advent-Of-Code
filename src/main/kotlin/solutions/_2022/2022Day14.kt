@@ -1,6 +1,6 @@
 package solutions._2022
 
-import solutions._2021.Coordinate
+import Coordinate
 import solutions._2022.Type.*
 
 typealias TileGrid = Array<MutableList<Tile>>
