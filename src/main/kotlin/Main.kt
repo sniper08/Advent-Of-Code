@@ -1,11 +1,9 @@
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2023.calculateSumOfGearRatiosInEngineSchematics
-import solutions._2023.calculateSumOfNumberPartsInEngineSchematics
-import solutions._2023.calculateSumOfPowersCubesGame
+import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateSumOfNumberPartsInEngineSchematics(inputCleaner(parseFile(2023, 3))))
+    println(countScratchCards(inputCleaner(parseFile(2023, 4))))
     println((System.currentTimeMillis() - startTime))
 }
