@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(countScratchCards(inputCleaner(parseFile(2023, 4))))
+    println(calculateLowestLocationForSeedRanges(inputCleaner(parseFile(2023, 5), lineJumps = 2)))
     println((System.currentTimeMillis() - startTime))
 }
