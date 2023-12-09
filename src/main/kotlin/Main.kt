@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateWayToBeatRecordForRace(inputCleaner(parseFile(year = 2023, dayNumber = 6))))
+    println(calculateTotalWinningsForCardGame(inputCleaner(parseFile(year = 2023, dayNumber = 7)), jokerRule = true))
     println((System.currentTimeMillis() - startTime))
 }
