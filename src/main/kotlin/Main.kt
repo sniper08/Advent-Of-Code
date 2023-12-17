@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateSumOfOasisExtrapolatedValues(inputCleaner(parseFile(year = 2023, dayNumber = 9))))
+    println(calculateEnclosedInLoopTilesCountPipeMaze(inputCleaner(parseFile(year = 2023, dayNumber = 10))))
     println((System.currentTimeMillis() - startTime))
 }
