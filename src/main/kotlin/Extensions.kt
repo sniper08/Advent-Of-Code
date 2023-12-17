@@ -5,7 +5,17 @@ fun JsonElement.getObject() = try { jsonObject } catch (e: Exception) { null }
 fun JsonElement.getStringValue() = try { jsonPrimitive.content } catch (e: Exception) { null }
 fun JsonElement.getIntValue() = try { jsonPrimitive.intOrNull } catch (e: Exception) { null }
 
-data class Coordinate(val x: Int, val y: Int)
+data class Coordinate(val x: Int, val y: Int) {
+    override fun toString(): String = "($y,$x)"
+}
+
+data class UpdateCoordinate(var x: Int, var y: Int) {
+    override fun toString(): String = "($y,$x)"
+}
+
+data class LongUpdateCoordinate(var x: Long, var y: Long) {
+    override fun toString(): String = "($y,$x)"
+}
 
 val doNothing = { }
 

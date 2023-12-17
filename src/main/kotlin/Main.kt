@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateEnclosedInLoopTilesCountPipeMaze(inputCleaner(parseFile(year = 2023, dayNumber = 10))))
+    println(calculateSumOfGalaxyDistances(inputCleaner(parseFile(year = 2023, dayNumber = 11))))
     println((System.currentTimeMillis() - startTime))
 }
