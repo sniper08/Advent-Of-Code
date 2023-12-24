@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateDamageSpringsArrangementsUnfolded(inputCleaner(parseFile(year = 2023, dayNumber = 12))))
+    println(summarizeReflectionsWithSmudge(inputCleaner(parseFile(year = 2023, dayNumber = 13), lineJumps = 2)))
     println((System.currentTimeMillis() - startTime))
 }
