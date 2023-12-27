@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateFocusingPowerOfLensConfiguration(parseFile(year = 2023, dayNumber = 15)))
+    println(calculateEnergizedTilesFromAnyPoint(inputCleaner(parseFile(year = 2023, dayNumber = 16))))
     println((System.currentTimeMillis() - startTime))
 }
