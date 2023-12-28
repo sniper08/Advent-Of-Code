@@ -17,6 +17,8 @@ data class LongUpdateCoordinate(var x: Long, var y: Long) {
     override fun toString(): String = "($y,$x)"
 }
 
+enum class Direction { NORTH, SOUTH, WEST, EAST }
+
 val doNothing = { }
 
 const val ANSI_RESET = "\u001B[0m"

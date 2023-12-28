@@ -7,12 +7,12 @@ import ANSI_RED_BACKGROUND
 import ANSI_RESET
 import ANSI_YELLOW
 import Coordinate
+import Direction
+import Direction.*
 import doNothing
-import solutions._2021.pointsClosing
-import solutions._2023.Direction.*
 import solutions._2023.PipeType.*
 import solutions._2023.ValidationCheck.*
-import java.util.Stack
+import java.util.*
 
 typealias PipeMaze = Array<Array<PipeTile>>
 
@@ -25,8 +25,6 @@ enum class PipeType(val value: Char) {
     SOUTH_EAST('F'),
     GROUND('.')
 }
-
-enum class Direction { NORTH, SOUTH, WEST, EAST }
 
 private const val BEGIN = 'S'
 private var begin: PipeTile.Begin? = null
