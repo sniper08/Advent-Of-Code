@@ -1,9 +1,8 @@
 package solutions._2023
 
 import Coordinate
-import Direction
-import Direction.*
-import solutions._2015.Route
+import CDirection
+import CDirection.*
 import java.util.PriorityQueue
 
 typealias City = Array<Array<CityBlock>>
@@ -28,10 +27,10 @@ data class RouteSimple(
     val last: CityBlock,
     val heatLoss: Int,
     var inStraightLineSteps: Int,
-    val direction: Direction
+    val direction: CDirection
 )
 
-fun initialisingControlMap(direction: Direction, maxSteps: Int) =
+fun initialisingControlMap(direction: CDirection, maxSteps: Int) =
     direction to buildMap {
         repeat(maxSteps) { put(it + 1, Int.MAX_VALUE) }
     }.toMutableMap()
@@ -217,7 +216,7 @@ private fun createCity(
 
 private fun processQueue(
     pq: PriorityQueue<RouteSimple>,
-    controlArray: Array<Array<MutableMap<Direction, MutableMap<Int, Int>>>>,
+    controlArray: Array<Array<MutableMap<CDirection, MutableMap<Int, Int>>>>,
     onNext: (RouteSimple, MutableList<RouteSimple>) -> Unit
 ) {
     while (pq.isNotEmpty()) {

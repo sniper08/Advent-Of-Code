@@ -17,7 +17,9 @@ data class LongUpdateCoordinate(var x: Long, var y: Long) {
     override fun toString(): String = "($y,$x)"
 }
 
-enum class Direction { NORTH, SOUTH, WEST, EAST }
+enum class CDirection { NORTH, SOUTH, WEST, EAST }
+
+enum class Direction { R, L, U, D }
 
 val doNothing = { }
 

@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateLeastHeatLossUltra(inputCleaner(parseFile(year = 2023, dayNumber = 17))))
+    println(calculateCubicMetersInLagoon(inputCleaner(parseFile(year = 2023, dayNumber = 18)), inHex = true))
     println((System.currentTimeMillis() - startTime))
 }

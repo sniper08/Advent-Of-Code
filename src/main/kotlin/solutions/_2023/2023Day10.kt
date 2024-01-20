@@ -7,8 +7,8 @@ import ANSI_RED_BACKGROUND
 import ANSI_RESET
 import ANSI_YELLOW
 import Coordinate
-import Direction
-import Direction.*
+import CDirection
+import CDirection.*
 import doNothing
 import solutions._2023.PipeType.*
 import solutions._2023.ValidationCheck.*
@@ -35,8 +35,8 @@ sealed class PipeTile {
     abstract val coordinate: Coordinate
     abstract fun next(maze: PipeMaze): List<PipeTile>
 
-    protected val openFrom = mutableSetOf<Direction>()
-    fun openFrom(): Set<Direction> = openFrom
+    protected val openFrom = mutableSetOf<CDirection>()
+    fun openFrom(): Set<CDirection> = openFrom
 
     val inLoop get() = openFrom.isNotEmpty()
 
@@ -110,7 +110,7 @@ sealed class PipeTile {
         val pipeType: PipeType,
         override val coordinate: Coordinate
     ) : PipeTile() {
-        private var addedToLoopFrom: Direction? = null
+        private var addedToLoopFrom: CDirection? = null
 
         fun addToLoop(previous: PipeTile) {
             addedToLoopFrom = when {

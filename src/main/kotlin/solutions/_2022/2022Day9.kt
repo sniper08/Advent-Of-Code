@@ -1,9 +1,7 @@
 package solutions._2022
 
-import solutions._2022.MoveDirection.*
 
 typealias PlanckGrid = Array<Array<Planck>>
-enum class MoveDirection { R, L, U, D }
 data class Planck(var visited: Boolean = false)
 data class Knot(var y: Int, var x: Int)
 
@@ -42,10 +40,10 @@ fun findPositionsVisitedByTailBridge(input: Sequence<String>) {
 fun Rope.move(moveDirection: String, grid: PlanckGrid) {
     val head = knots.first()
     when (moveDirection) {
-        L.name -> head.x--
-        R.name -> head.x++
-        U.name -> head.y--
-        D.name -> head.y++
+        Direction.L.name -> head.x--
+        Direction.R.name -> head.x++
+        Direction.U.name -> head.y--
+        Direction.D.name -> head.y++
     }
 
     for (i in 1..knots.lastIndex) {
