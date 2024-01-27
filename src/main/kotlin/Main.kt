@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateCubicMetersInLagoon(inputCleaner(parseFile(year = 2023, dayNumber = 18)), inHex = true))
+    println(calculateAcceptedRatingCombinations(inputCleaner(parseFile(year = 2023, dayNumber = 19), lineJumps = 2)))
     println((System.currentTimeMillis() - startTime))
 }
