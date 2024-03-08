@@ -1,5 +1,22 @@
 import kotlinx.serialization.json.*
 
+enum class DirectionArrow(val arrow: Char) {
+    NORTH('^'),
+    SOUTH('v'),
+    WEST('<'),
+    EAST('>');
+
+    companion object {
+        fun from(value: Char) = when (value) {
+            NORTH.arrow -> NORTH
+            WEST.arrow -> WEST
+            EAST.arrow -> EAST
+            SOUTH.arrow -> SOUTH
+            else -> throw Exception("Invalid char value")
+        }
+    }
+}
+
 fun JsonElement.getArray() = try { jsonArray } catch (e: Exception) { null }
 fun JsonElement.getObject() = try { jsonObject } catch (e: Exception) { null }
 fun JsonElement.getStringValue() = try { jsonPrimitive.content } catch (e: Exception) { null }
