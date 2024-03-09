@@ -4,6 +4,6 @@ import solutions._2023.*
 
 fun main(args: Array<String>) {
     val startTime = System.currentTimeMillis()
-    println(calculateLongestPathInTrail(inputCleaner(parseFile(year = 2023, dayNumber = 23))))
+    println(findStartingRockPosition(inputCleaner(parseFile(year = 2023, dayNumber = 24))))
     println((System.currentTimeMillis() - startTime))
 }
