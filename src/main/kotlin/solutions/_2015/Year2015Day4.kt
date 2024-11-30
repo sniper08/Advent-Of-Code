@@ -15,7 +15,7 @@ class Year2015Day4 : Day {
     private val mD5finder = MD5finder()
 
     /**
-     * Lowest number to create MD5 has with 5 zeroes as padding
+     * Lowest number to create MD5 hash with 5 zeroes as padding
      */
     override fun part1(input: Sequence<String>): String {
         val minMD5Num = mD5finder.findMinMD5Num(
@@ -26,7 +26,7 @@ class Year2015Day4 : Day {
     }
 
     /**
-     * Lowest number to create MD5 has with 6 zeroes as padding
+     * Lowest number to create MD5 hash with 6 zeroes as padding
      */
     override fun part2(input: Sequence<String>): String {
         val minMD5Num = mD5finder.findMinMD5Num(
