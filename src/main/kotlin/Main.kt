@@ -1,11 +1,11 @@
 import day.Day
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2015.Year2015Day3
+import solutions._2015.Year2015Day4
 
 fun main(args: Array<String>) {
     Runner().run(
-        Year2015Day3()
+        Year2015Day4()
     )
 }
 
@@ -30,6 +30,7 @@ class Runner {
             println("--Part 1--")
             println("Execution Time: $part1Time")
             println("Answer: $part1Answer")
+
             println("--Part 2--")
             println("Execution Time: $part2Time")
             println("Answer: $part2Answer")

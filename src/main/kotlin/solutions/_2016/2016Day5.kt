@@ -1,7 +1,7 @@
 package solutions._2016
 
+import createMD5Hash
 import kotlinx.coroutines.runBlocking
-import solutions._2015.createMD5Hash
 import java.security.MessageDigest
 
 fun findMD5Password(input: String) = runBlocking {

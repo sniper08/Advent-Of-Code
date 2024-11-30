@@ -1,4 +1,6 @@
 import kotlinx.serialization.json.*
+import java.nio.charset.StandardCharsets.UTF_8
+import java.security.MessageDigest
 
 enum class DirectionArrow(val arrow: Char) {
     NORTH('^'),
@@ -60,3 +62,6 @@ const val ANSI_BLUE_BACKGROUND = "\u001B[44m"
 const val ANSI_PURPLE_BACKGROUND = "\u001B[45m"
 const val ANSI_CYAN_BACKGROUND = "\u001B[46m"
 const val ANSI_WHITE_BACKGROUND = "\u001B[47m"
+
+fun MessageDigest.createMD5Hash(input: String) = digest(input.toByteArray(UTF_8))
+    .joinToString("") { "%02x".format(it) }
