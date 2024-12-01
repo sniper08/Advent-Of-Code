@@ -2,6 +2,9 @@ import kotlinx.serialization.json.*
 import java.nio.charset.StandardCharsets.UTF_8
 import java.security.MessageDigest
 
+const val TURN_ON = "on"
+const val TURN_OFF = "off"
+
 enum class DirectionArrow(val arrow: Char) {
     NORTH('^'),
     SOUTH('v'),
