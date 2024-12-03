@@ -1,11 +1,11 @@
 import day.Day
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2015.Year2015Day6
+import solutions._2024.Year2024Day2
 
 fun main(args: Array<String>) {
     Runner().run(
-        Year2015Day6()
+        Year2024Day2()
     )
 }
 
@@ -26,7 +26,7 @@ class Runner {
             val part2Answer = day.part2(input = dayInput)
             val part2Time = System.currentTimeMillis() - startTime
 
-            println("--------------${day.year}-------Day: ${day.day}----------------------------")
+            println("--------------Year: ${day.year}-------Day: ${day.day}----------------------------")
             println("--Part 1--")
             println("Execution Time: $part1Time")
             println("Answer: $part1Answer")
