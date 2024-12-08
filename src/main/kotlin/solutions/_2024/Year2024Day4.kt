@@ -7,10 +7,8 @@ import Coordinate
 import day.Day
 import solutions._2024.XmasDirection.*
 import solutions._2024.XmasDirection.S as SO
-import solutions._2024.Year2024Day4.XmasLetter
 import solutions._2024.Year2024Day4.XmasLetter.*
-
-typealias XmasGrid = Array<Array<XmasLetter>>
+import utils.Grid
 
 enum class XmasDirection { NW, N, NE, W, E, SW, S, SE }
 
@@ -36,19 +34,15 @@ class Year2024Day4 : Day {
                 foundXmasCombinations.addAll(letterX.findXmasCombinations(grid = grid))
             }
 
-        grid.forEach {
-            println(
-                it.joinToString("") { letter ->
-                    val string = letter.toString()
-                    when (letter) {
-                        is X -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
-                        is M -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
-                        is A -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
-                        is S -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
-                        else -> string
-                    }
-                }
-            )
+        grid.print { letter ->
+            val string = letter.toString()
+            when (letter) {
+                is X -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
+                is M -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
+                is A -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
+                is S -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
+                else -> string
+            }
         }
 
         return "${foundXmasCombinations.count()}"
@@ -75,35 +69,31 @@ class Year2024Day4 : Day {
             }
 
         println()
-        grid.forEach {
-            println(
-                it.joinToString("") { letter ->
-                    val string = letter.toString()
-                    when (letter) {
-                        is M -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
-                        is A -> if (letter.inXmasCross) "$ANSI_RED$string$ANSI_RESET" else string
-                        is S -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
-                        else -> string
-                    }
-                }
-            )
+        grid.print { letter ->
+            val string = letter.toString()
+            when (letter) {
+                is M -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
+                is A -> if (letter.inXmasCross) "$ANSI_RED$string$ANSI_RESET" else string
+                is S -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
+                else -> string
+            }
         }
 
         return "$xmasCrossCount"
     }
 
-    private fun createXmasGrid(input: Sequence<String>) = XmasGrid(input.count()) { y ->
-        Array(input.first().length) { x ->
-            val rawLetter = input.elementAt(y)[x].toString()
-            val coordinate = Coordinate(y = y, x = x)
+    private fun createXmasGrid(input: Sequence<String>) = Grid<XmasLetter>(
+        ySize = input.count(),
+        xSize = input.first().length
+    ) { coordinate ->
+        val rawLetter = input.elementAt(coordinate.y)[coordinate.x].toString()
 
-            when (rawLetter) {
-                "X" -> X(coordinate = coordinate)
-                "M" -> M(coordinate = coordinate)
-                "A" -> A(coordinate = coordinate)
-                "S" -> S(coordinate = coordinate)
-                else -> Noise(coordinate = coordinate)
-            }
+        when (rawLetter) {
+            "X" -> X(coordinate = coordinate)
+            "M" -> M(coordinate = coordinate)
+            "A" -> A(coordinate = coordinate)
+            "S" -> S(coordinate = coordinate)
+            else -> Noise(coordinate = coordinate)
         }
     }
 
@@ -116,7 +106,7 @@ class Year2024Day4 : Day {
             protected set
 
         data class X(override val coordinate: Coordinate) : XmasLetter() {
-            fun findXmasCombinations(grid: XmasGrid): Set<Xmas> {
+            fun findXmasCombinations(grid: Grid<XmasLetter>): Set<Xmas> {
                 val foundXmasCombinations = mutableSetOf<Xmas>()
 
                 for (direction in XmasDirection.entries) {
@@ -142,7 +132,7 @@ class Year2024Day4 : Day {
         }
 
         data class M(override val coordinate: Coordinate) : XmasLetter() {
-            fun traceXmasCombination(grid: XmasGrid, direction: XmasDirection, xmas: Xmas): Xmas? {
+            fun traceXmasCombination(grid: Grid<XmasLetter>, direction: XmasDirection, xmas: Xmas): Xmas? {
                 val foundA = findXmasLetter<A>(fromLetter = this, direction = direction, grid = grid)
 
                 return foundA?.traceXmasCombination(
@@ -154,7 +144,7 @@ class Year2024Day4 : Day {
         }
 
         data class A(override val coordinate: Coordinate) : XmasLetter() {
-            fun isInCenterOfXmasCross(grid: XmasGrid): Boolean {
+            fun isInCenterOfXmasCross(grid: Grid<XmasLetter>): Boolean {
                 val northWestM = findXmasLetter<M>(fromLetter = this, direction = NW, grid)
                 val northWestS = findXmasLetter<S>(fromLetter = this, direction = NW, grid)
                 val northEastM = findXmasLetter<M>(fromLetter = this, direction = NE, grid)
@@ -231,7 +221,7 @@ class Year2024Day4 : Day {
                 }
             }
 
-            fun traceXmasCombination(grid: XmasGrid, direction: XmasDirection, xmas: Xmas): Xmas? {
+            fun traceXmasCombination(grid: Grid<XmasLetter>, direction: XmasDirection, xmas: Xmas): Xmas? {
                 val foundS = findXmasLetter<S>(fromLetter = this, direction = direction, grid = grid)
 
                 return foundS
@@ -251,16 +241,16 @@ class Year2024Day4 : Day {
             override fun toString(): String = "."
         }
 
-        inline fun <reified T : XmasLetter> findXmasLetter(fromLetter: XmasLetter, direction: XmasDirection, grid: XmasGrid): T? =
+        inline fun <reified T : XmasLetter> findXmasLetter(fromLetter: XmasLetter, direction: XmasDirection, grid: Grid<XmasLetter>): T? =
             when (direction) {
-                NW -> grid.getOrNull(fromLetter.coordinate.y - 1)?.getOrNull(fromLetter.coordinate.x - 1)
-                N -> grid.getOrNull(fromLetter.coordinate.y - 1)?.getOrNull(fromLetter.coordinate.x)
-                NE -> grid.getOrNull(fromLetter.coordinate.y - 1)?.getOrNull(fromLetter.coordinate.x + 1)
-                W -> grid.getOrNull(fromLetter.coordinate.y)?.getOrNull(fromLetter.coordinate.x - 1)
-                E -> grid.getOrNull(fromLetter.coordinate.y)?.getOrNull(fromLetter.coordinate.x + 1)
-                SW -> grid.getOrNull(fromLetter.coordinate.y + 1)?.getOrNull(fromLetter.coordinate.x - 1)
-                SO -> grid.getOrNull(fromLetter.coordinate.y + 1)?.getOrNull(fromLetter.coordinate.x)
-                SE -> grid.getOrNull(fromLetter.coordinate.y + 1)?.getOrNull(fromLetter.coordinate.x + 1)
+                NW -> grid[Coordinate(y = fromLetter.coordinate.y - 1, x = fromLetter.coordinate.x - 1)]
+                N -> grid[Coordinate(y = fromLetter.coordinate.y - 1, x = fromLetter.coordinate.x)]
+                NE -> grid[Coordinate(y = fromLetter.coordinate.y - 1, x = fromLetter.coordinate.x + 1)]
+                W -> grid[Coordinate(y = fromLetter.coordinate.y, x = fromLetter.coordinate.x - 1)]
+                E -> grid[Coordinate(y = fromLetter.coordinate.y, x = fromLetter.coordinate.x + 1)]
+                SW -> grid[Coordinate(y = fromLetter.coordinate.y + 1, x = fromLetter.coordinate.x - 1)]
+                SO -> grid[Coordinate(y = fromLetter.coordinate.y + 1, x = fromLetter.coordinate.x)]
+                SE -> grid[Coordinate(y = fromLetter.coordinate.y + 1, x = fromLetter.coordinate.x + 1)]
             } as? T
     }
 
