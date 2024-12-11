@@ -20,6 +20,8 @@ enum class DirectionArrow(val arrow: Char) {
             else -> throw Exception("Invalid char value")
         }
     }
+
+    override fun toString() = "$arrow"
 }
 
 fun JsonElement.getArray() = try { jsonArray } catch (e: Exception) { null }
