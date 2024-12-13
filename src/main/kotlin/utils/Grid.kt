@@ -3,8 +3,8 @@ package utils
 import Coordinate
 
 class Grid<T>(
-    ySize: Int,
-    xSize: Int,
+    private val ySize: Int,
+    private val xSize: Int,
     init: (Coordinate) -> T
 ) {
 
@@ -40,4 +40,7 @@ class Grid<T>(
             )
         }
     }
+
+    fun yLastIndex() = ySize - 1
+    fun xLastIndex() = xSize - 1
 }
