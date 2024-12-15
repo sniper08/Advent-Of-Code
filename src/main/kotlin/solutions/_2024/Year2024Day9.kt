@@ -113,7 +113,7 @@ class Year2024Day9 : Day {
                     val nextToFirstEmptyCanHoldFile = fileBlockArrangement[firstEmptyCanHoldFile.index + 1]
 
                     fileBlockArrangement.addFile(index = firstEmptyCanHoldFile.index, fromFile = file)
-                    fileBlockArrangement.removeLastFileArAddEmpty(file = file)
+                    fileBlockArrangement.removeLastFileOrAddEmpty(file = file)
 
                     when {
                         diff > 0 && nextToFirstEmptyCanHoldFile is Empty -> nextToFirstEmptyCanHoldFile.size += diff
@@ -164,7 +164,7 @@ class Year2024Day9 : Day {
         )
     }
 
-    private fun MutableList<Package>.removeLastFileArAddEmpty(file: File) {
+    private fun MutableList<Package>.removeLastFileOrAddEmpty(file: File) {
         if (file.index == lastIndex) {
             removeLast()
         } else {
