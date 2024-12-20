@@ -40,10 +40,10 @@ fun findPositionsVisitedByTailBridge(input: Sequence<String>) {
 fun Rope.move(moveDirection: String, grid: PlanckGrid) {
     val head = knots.first()
     when (moveDirection) {
-        Direction.L.name -> head.x--
-        Direction.R.name -> head.x++
-        Direction.U.name -> head.y--
-        Direction.D.name -> head.y++
+        LetterDirection.L.name -> head.x--
+        LetterDirection.R.name -> head.x++
+        LetterDirection.U.name -> head.y--
+        LetterDirection.D.name -> head.y++
     }
 
     for (i in 1..knots.lastIndex) {

@@ -4,7 +4,7 @@ import ANSI_GREEN
 import ANSI_PURPLE
 import ANSI_RED
 import ANSI_RESET
-import Direction.*
+import LetterDirection.*
 import LongUpdateCoordinate
 import solutions._2023.SegmentOrientation.H
 import solutions._2023.SegmentOrientation.V

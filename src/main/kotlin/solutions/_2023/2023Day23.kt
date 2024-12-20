@@ -1,7 +1,7 @@
 package solutions._2023
 
 import Coordinate
-import DirectionArrow
+import LinearDirection
 import kotlin.math.max
 
 typealias HikingTrail = Array<Array<HikingTile>>
@@ -38,17 +38,17 @@ sealed class HikingTile(
 
         data class Slope(
             override val coordinate: Coordinate,
-            val direction: DirectionArrow
-        ) : Walkable(coordinate, direction.arrow) {
+            val linearDirection: LinearDirection
+        ) : Walkable(coordinate, linearDirection.arrow) {
             override fun cross(hikingTrail: HikingTrail): List<Walkable> {
                 if (cross.isEmpty()) {
                     cross.addAll(
                         listOfNotNull(
-                            when (direction) {
-                                DirectionArrow.NORTH -> hikingTrail.getOrNull(coordinate.y - 1)?.getOrNull(coordinate.x)
-                                DirectionArrow.WEST -> hikingTrail.getOrNull(coordinate.y)?.getOrNull(coordinate.x - 1)
-                                DirectionArrow.EAST -> hikingTrail.getOrNull(coordinate.y)?.getOrNull(coordinate.x + 1)
-                                DirectionArrow.SOUTH -> hikingTrail.getOrNull(coordinate.y + 1)?.getOrNull(coordinate.x)
+                            when (linearDirection) {
+                                LinearDirection.NORTH -> hikingTrail.getOrNull(coordinate.y - 1)?.getOrNull(coordinate.x)
+                                LinearDirection.WEST -> hikingTrail.getOrNull(coordinate.y)?.getOrNull(coordinate.x - 1)
+                                LinearDirection.EAST -> hikingTrail.getOrNull(coordinate.y)?.getOrNull(coordinate.x + 1)
+                                LinearDirection.SOUTH -> hikingTrail.getOrNull(coordinate.y + 1)?.getOrNull(coordinate.x)
                             }
                         ).filterIsInstance<Walkable>()
                     )
@@ -260,7 +260,7 @@ private fun mapHikingTrail(input: Sequence<String>, icy: Boolean) = HikingTrail(
             '#' -> HikingTile.Forest(coordinate)
             else -> {
                 if (icy) {
-                    HikingTile.Walkable.Slope(coordinate, DirectionArrow.from(char))
+                    HikingTile.Walkable.Slope(coordinate, LinearDirection.from(char))
                 } else {
                     HikingTile.Walkable.Path(coordinate)
                 }

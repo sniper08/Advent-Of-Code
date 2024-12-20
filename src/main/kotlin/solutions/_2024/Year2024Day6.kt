@@ -4,8 +4,8 @@ import ANSI_GREEN
 import ANSI_RED
 import ANSI_RESET
 import Coordinate
-import DirectionArrow
-import DirectionArrow.*
+import LinearDirection
+import LinearDirection.*
 import day.Day
 import solutions._2024.Year2024Day6.GuardMove.*
 import solutions._2024.Year2024Day6.LabSection
@@ -91,9 +91,9 @@ class Year2024Day6 : Day {
             else -> {
                 Empty(coordinate = coordinate, guardPresent = true)
                     .also {
-                        val direction = DirectionArrow.from(value = rawChar)
-                        it.visit(direction = direction)
-                        guard.start(direction = direction, labSection = it)
+                        val linearDirection = LinearDirection.from(value = rawChar)
+                        it.visit(linearDirection = linearDirection)
+                        guard.start(linearDirection = linearDirection, labSection = it)
                     }
             }
         }
@@ -109,8 +109,8 @@ class Year2024Day6 : Day {
                 emptySection.reset()
 
                 if (emptySection.coordinate == guardStartCoordinate && guardStartDirection != null) {
-                    emptySection.visit(direction = guardStartDirection)
-                    guard.start(direction = guardStartDirection, labSection = emptySection)
+                    emptySection.visit(linearDirection = guardStartDirection)
+                    guard.start(linearDirection = guardStartDirection, labSection = emptySection)
                 }
             }
     }
@@ -134,7 +134,7 @@ class Year2024Day6 : Day {
         }
     }
 
-    data class Visited(val direction: DirectionArrow)
+    data class Visited(val linearDirection: LinearDirection)
 
     sealed class LabSection {
         abstract val coordinate: Coordinate
@@ -147,8 +147,8 @@ class Year2024Day6 : Day {
             private val visitedByGuard = mutableListOf<Visited>()
             fun visitedByGuard(): List<Visited> = visitedByGuard
 
-            fun visit(direction: DirectionArrow) {
-                visitedByGuard.add(Visited(direction = direction))
+            fun visit(linearDirection: LinearDirection) {
+                visitedByGuard.add(Visited(linearDirection = linearDirection))
                 guardPresent = true
             }
 
@@ -159,8 +159,8 @@ class Year2024Day6 : Day {
             }
 
             override fun toString(): String {
-                val containsVerticalDirection = visitedByGuard.any { it.direction == NORTH || it.direction == SOUTH }
-                val containsHorizontalDirection = visitedByGuard.any { it.direction == WEST || it.direction == EAST }
+                val containsVerticalDirection = visitedByGuard.any { it.linearDirection == NORTH || it.linearDirection == SOUTH }
+                val containsHorizontalDirection = visitedByGuard.any { it.linearDirection == WEST || it.linearDirection == EAST }
 
                 return when {
                     obstructed -> "O"
@@ -181,28 +181,28 @@ class Year2024Day6 : Day {
 
     class Guard {
         private var startCoordinate: Coordinate? = null
-        private var startDirection: DirectionArrow? = null
-        private var currentDirection: DirectionArrow = NORTH
+        private var startLinearDirection: LinearDirection? = null
+        private var currentLinearDirection: LinearDirection = NORTH
         private var currentLabSection: Empty = Empty(coordinate = Coordinate(y = -1, x = -1))
 
-        fun start(direction: DirectionArrow, labSection: Empty) {
-            currentDirection = direction
+        fun start(linearDirection: LinearDirection, labSection: Empty) {
+            currentLinearDirection = linearDirection
             currentLabSection = labSection
-            if (startCoordinate == null && startDirection == null) {
+            if (startCoordinate == null && startLinearDirection == null) {
                 startCoordinate = labSection.coordinate
-                startDirection = direction
+                startLinearDirection = linearDirection
             }
         }
 
         fun current(): Empty = currentLabSection
         fun startCoordinate() = startCoordinate
-        fun startDirection() = startDirection
+        fun startDirection() = startLinearDirection
 
         fun move(lab: Lab): GuardMove {
             val currentY = currentLabSection.coordinate.y
             val currentX = currentLabSection.coordinate.x
 
-            val possibleNext = when (currentDirection) {
+            val possibleNext = when (currentLinearDirection) {
                 NORTH -> lab[Coordinate(y = currentY - 1, x = currentX)]
                 WEST -> lab[Coordinate(y = currentY, x = currentX - 1)]
                 EAST -> lab[Coordinate(y = currentY, x = currentX + 1)]
@@ -210,13 +210,13 @@ class Year2024Day6 : Day {
             }
 
             fun rotate90degrees() {
-                currentDirection = when (currentDirection) {
+                currentLinearDirection = when (currentLinearDirection) {
                     NORTH -> EAST
                     WEST -> NORTH
                     EAST -> SOUTH
                     SOUTH -> WEST
                 }
-                currentLabSection.visit(direction = currentDirection)
+                currentLabSection.visit(linearDirection = currentLinearDirection)
             }
 
             return when (possibleNext) {
@@ -225,7 +225,7 @@ class Year2024Day6 : Day {
                         rotate90degrees()
                     } else {
                         currentLabSection.guardPresent = false
-                        possibleNext.visit(direction = currentDirection)
+                        possibleNext.visit(linearDirection = currentLinearDirection)
                         currentLabSection = possibleNext
                     }
                     SUCCESSFUL
@@ -247,7 +247,7 @@ class Year2024Day6 : Day {
 
             return if (guardMove == SUCCESSFUL) {
                 if (currentVisitedByGuard.size > 1) {
-                    val repeatedDirections = currentVisitedByGuard.groupBy { it.direction }
+                    val repeatedDirections = currentVisitedByGuard.groupBy { it.linearDirection }
 
                     // Check if LabSection was visited more than once from the same direction
                     val successful = repeatedDirections.values.none { it.size > 1 }
@@ -260,6 +260,6 @@ class Year2024Day6 : Day {
             }
         }
 
-        override fun toString(): String = currentDirection.toString()
+        override fun toString(): String = currentLinearDirection.toString()
     }
 }

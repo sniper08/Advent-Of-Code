@@ -5,7 +5,9 @@ import java.security.MessageDigest
 const val TURN_ON = "on"
 const val TURN_OFF = "off"
 
-enum class DirectionArrow(val arrow: Char) {
+enum class AllSidesDirection { NW, N, NE, W, E, SW, S, SE }
+
+enum class LinearDirection(val arrow: Char) {
     NORTH('^'),
     SOUTH('v'),
     WEST('<'),
@@ -45,7 +47,7 @@ data class LongUpdateCoordinate(var x: Long, var y: Long) {
 
 enum class CDirection { NORTH, SOUTH, WEST, EAST }
 
-enum class Direction { R, L, U, D }
+enum class LetterDirection { R, L, U, D }
 
 val doNothing = { }
 
@@ -58,6 +60,9 @@ const val ANSI_BLUE = "\u001B[34m"
 const val ANSI_PURPLE = "\u001B[35m"
 const val ANSI_CYAN = "\u001B[36m"
 const val ANSI_WHITE = "\u001B[37m"
+const val ANSI_UNKNOWN = "\u001b[38;5;220m"
+
+fun createAnsi(number: Int) = "\u001b[38;5;${number}m"
 
 const val ANSI_BLACK_BACKGROUND = "\u001B[40m"
 const val ANSI_RED_BACKGROUND = "\u001B[41m"

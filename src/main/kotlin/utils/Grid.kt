@@ -1,6 +1,10 @@
 package utils
 
 import Coordinate
+import LinearDirection
+import LinearDirection.*
+import AllSidesDirection
+import AllSidesDirection.*
 
 class Grid<T>(
     private val ySize: Int,
@@ -40,6 +44,24 @@ class Grid<T>(
             )
         }
     }
+
+    fun findLinearNeighbours(coordinate: Coordinate): Map<LinearDirection, T?> = mapOf(
+        NORTH to this[Coordinate(y = coordinate.y - 1, x = coordinate.x)],
+        WEST to this[Coordinate(y = coordinate.y, x = coordinate.x - 1)],
+        EAST to this[Coordinate(y = coordinate.y, x = coordinate.x + 1)],
+        SOUTH to this[Coordinate(y = coordinate.y + 1, x = coordinate.x)]
+    )
+
+    fun findAllNeighbours(coordinate: Coordinate): Map<AllSidesDirection, T?> = mapOf(
+        NW to this[Coordinate(y = coordinate.y - 1, x = coordinate.x - 1)],
+        N to this[Coordinate(y = coordinate.y - 1, x = coordinate.x)],
+        NE to this[Coordinate(y = coordinate.y - 1, x = coordinate.x + 1)],
+        W to this[Coordinate(y = coordinate.y, x = coordinate.x - 1)],
+        E to this[Coordinate(y = coordinate.y, x = coordinate.x + 1)],
+        SW to this[Coordinate(y = coordinate.y + 1, x = coordinate.x - 1)],
+        S to this[Coordinate(y = coordinate.y + 1, x = coordinate.x)],
+        SE to this[Coordinate(y = coordinate.y + 1, x = coordinate.x + 1)],
+    )
 
     fun yLastIndex() = ySize - 1
     fun xLastIndex() = xSize - 1

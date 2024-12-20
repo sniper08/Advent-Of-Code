@@ -131,17 +131,15 @@ class Year2024Day10 : Day {
             override fun toString(): String = "$height"
         }
 
-        fun findNextByHeight(map: TopographicMap): Set<Hill> = listOf(
-            map[Coordinate(y = coordinate.y - 1, x = coordinate.x)],
-            map[Coordinate(y = coordinate.y, x = coordinate.x - 1)],
-            map[Coordinate(y = coordinate.y, x = coordinate.x + 1)],
-            map[Coordinate(y = coordinate.y + 1, x = coordinate.x)],
-        ).mapNotNull {
-            if (it is Hill && it.height - height == 1) {
-                it
-            } else {
-                null
-            }
-        }.toSet()
+        fun findNextByHeight(map: TopographicMap): Set<Hill> = map
+            .findLinearNeighbours(coordinate = coordinate)
+            .values
+            .mapNotNull {
+                if (it is Hill && it.height - height == 1) {
+                    it
+                } else {
+                    null
+                }
+            }.toSet()
     }
 }
