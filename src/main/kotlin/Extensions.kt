@@ -35,6 +35,12 @@ data class DoubleCoordinate(val x: Double, val y: Double)
 
 data class Coordinate(val x: Int, val y: Int) {
     override fun toString(): String = "($y,$x)"
+    fun toStringReversed() = "($x,$y)"
+}
+
+data class LongCoordinate(val x: Long, val y: Long) {
+    override fun toString(): String = "($y,$x)"
+    fun toStringReversed() = "($x,$y)"
 }
 
 data class UpdateCoordinate(var x: Int, var y: Int) {
