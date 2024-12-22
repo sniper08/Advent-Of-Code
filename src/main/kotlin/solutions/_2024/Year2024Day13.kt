@@ -15,12 +15,22 @@ class Year2024Day13 : Day {
 
     override val lineJumpsInput: Int = 2
 
+    /**
+     * Find total cost by multiplying A presses * 3 and B presses * 1
+     * It is an equation system with two variables
+     * Some equations have no solution
+     */
     override fun part1(input: Sequence<String>): String {
         val games = createArcadeGame(input = input)
 
         return "${games.sum(printing = false)}"
     }
 
+    /**
+     * Find total cost by multiplying A presses * 3 and B presses * 1 after applying a conversion fix
+     * It is an equation system with two variables
+     * Some equations have no solution
+     */
     override fun part2(input: Sequence<String>): String {
         val games = createArcadeGame(input = input, unitConversionFix = 10000000000000)
 

@@ -12,7 +12,7 @@ class Grid<T>(
     init: (Coordinate) -> T
 ) {
 
-    private val grid = buildMap<Int, Map<Int,T>> {
+    private val grid = buildMap<Int, MutableMap<Int,T>> {
         (0 until ySize).map { y ->
             put(
                 key = y,
@@ -21,12 +21,15 @@ class Grid<T>(
                         val coordinate = Coordinate(y = y, x = x)
                         put(key = x, value = init(coordinate))
                     }
-                }
+                }.toMutableMap()
             )
         }
     }
 
     operator fun get(coordinate: Coordinate): T? = grid[coordinate.y]?.get(coordinate.x)
+    operator fun set(coordinate: Coordinate, element: T) {
+        grid[coordinate.y]?.put(key = coordinate.x, value = element)
+    }
 
     fun flatten(): List<T> =
         grid.flatMap { row ->
