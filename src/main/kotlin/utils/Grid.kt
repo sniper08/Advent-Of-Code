@@ -31,6 +31,8 @@ class Grid<T>(
         grid[coordinate.y]?.put(key = coordinate.x, value = element)
     }
 
+    fun getElement(coordinate: Coordinate): T = get(coordinate) ?: error("Not found in grid!")
+
     fun flatten(): List<T> =
         grid.flatMap { row ->
             row.value.values

@@ -24,6 +24,27 @@ enum class LinearDirection(val arrow: Char) {
         }
     }
 
+    fun opposite() = when (this) {
+        NORTH -> SOUTH
+        WEST -> EAST
+        EAST -> WEST
+        SOUTH -> NORTH
+    }
+
+    fun rotateClockwise() = when (this) {
+        NORTH -> EAST
+        WEST -> NORTH
+        EAST -> SOUTH
+        SOUTH -> WEST
+    }
+
+    fun rotateAntiClockwise() = when (this) {
+        NORTH -> WEST
+        WEST -> SOUTH
+        EAST -> NORTH
+        SOUTH -> EAST
+    }
+
     override fun toString() = "$arrow"
 }
 
