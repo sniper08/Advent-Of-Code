@@ -1,11 +1,11 @@
 import day.Day
 import parser.inputCleaner
 import parser.parseFile
-import solutions._2024.Year2024Day14
+import solutions._2024.Year2024Day15
 
 fun main(args: Array<String>) {
     Runner().run(
-        Year2024Day14()
+        Year2024Day15()
     )
 }
 

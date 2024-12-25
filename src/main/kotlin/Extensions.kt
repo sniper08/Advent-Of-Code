@@ -1,3 +1,4 @@
+import LinearDirection.*
 import kotlinx.serialization.json.*
 import java.nio.charset.StandardCharsets.UTF_8
 import java.security.MessageDigest
@@ -34,6 +35,14 @@ fun JsonElement.getIntValue() = try { jsonPrimitive.intOrNull } catch (e: Except
 data class DoubleCoordinate(val x: Double, val y: Double)
 
 data class Coordinate(val x: Int, val y: Int) {
+
+    fun newByDirection(direction: LinearDirection) = when(direction) {
+        NORTH -> Coordinate(y = y - 1, x = x)
+        WEST -> Coordinate(y = y, x = x - 1)
+        EAST -> Coordinate(y = y, x = x + 1)
+        SOUTH -> Coordinate(y = y + 1, x = x)
+    }
+
     override fun toString(): String = "($y,$x)"
     fun toStringReversed() = "($x,$y)"
 }

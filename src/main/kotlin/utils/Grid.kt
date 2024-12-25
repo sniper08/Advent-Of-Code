@@ -48,6 +48,17 @@ class Grid<T>(
         }
     }
 
+    fun findLinearNeighbour(
+        direction: LinearDirection,
+        coordinate: Coordinate
+    ) : T? =
+        when (direction) {
+            NORTH -> this[Coordinate(y = coordinate.y - 1, x = coordinate.x)]
+            WEST -> this[Coordinate(y = coordinate.y, x = coordinate.x - 1)]
+            EAST -> this[Coordinate(y = coordinate.y, x = coordinate.x + 1)]
+            SOUTH -> this[Coordinate(y = coordinate.y + 1, x = coordinate.x)]
+        }
+
     fun findLinearNeighbours(coordinate: Coordinate): Map<LinearDirection, T?> = mapOf(
         NORTH to this[Coordinate(y = coordinate.y - 1, x = coordinate.x)],
         WEST to this[Coordinate(y = coordinate.y, x = coordinate.x - 1)],
