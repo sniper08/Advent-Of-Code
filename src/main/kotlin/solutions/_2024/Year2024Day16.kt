@@ -22,6 +22,9 @@ class Year2024Day16 : Day {
     override val year: Int = 2024
     override val day: Int = 16
 
+    /**
+     * Find the cost the best path reindeer could take
+     */
     override fun part1(input: Sequence<String>): String {
         val maze = createMaze(input = input)
        // maze.print()
@@ -32,6 +35,9 @@ class Year2024Day16 : Day {
         return "${bestPath.points}"
     }
 
+    /**
+     * Find the count of maze section that are used in any best path a reindeer could take
+     */
     override fun part2(input: Sequence<String>): String {
         val maze = createMaze(input = input)
        // maze.print()

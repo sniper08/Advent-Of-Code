@@ -23,6 +23,9 @@ class Year2024Day15 : Day {
 
     override val lineJumpsInput: Int = 2
 
+    /**
+     * Find the sum of all boxes GPS after the robot finishes moving
+     */
     override fun part1(input: Sequence<String>): String {
         val rawWarehouse = inputCleaner(input = input.first())
         val directions = createDirections(input = input)
@@ -68,6 +71,10 @@ class Year2024Day15 : Day {
         return "$sumOfGPSCoordinates"
     }
 
+    /**
+     * Find the sum of all boxes GPS after the robot finishes moving, but the map duplicates each
+     * section horizontally before starting
+     */
     override fun part2(input: Sequence<String>): String {
         val rawWarehouse = inputCleaner(input = input.first())
         val directions = createDirections(input = input)

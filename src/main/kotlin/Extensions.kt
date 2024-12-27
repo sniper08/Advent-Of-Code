@@ -57,6 +57,10 @@ data class DoubleCoordinate(val x: Double, val y: Double)
 
 data class Coordinate(val x: Int, val y: Int) {
 
+    companion object {
+        val dummy = Coordinate(y = Int.MIN_VALUE, x = Int.MIN_VALUE)
+    }
+
     fun newByDirection(direction: LinearDirection) = when(direction) {
         NORTH -> Coordinate(y = y - 1, x = x)
         WEST -> Coordinate(y = y, x = x - 1)

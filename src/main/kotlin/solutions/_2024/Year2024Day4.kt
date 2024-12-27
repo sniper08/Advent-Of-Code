@@ -4,15 +4,13 @@ import ANSI_GREEN
 import ANSI_RED
 import ANSI_RESET
 import Coordinate
+import Coordinate.Companion.dummy
 import day.Day
-import solutions._2024.XmasDirection.*
-import solutions._2024.XmasDirection.S as SO
+import solutions._2024.Year2024Day4.XmasDirection.*
+import solutions._2024.Year2024Day4.XmasDirection.S as SO
 import solutions._2024.Year2024Day4.XmasLetter.*
+import solutions._2024.Year2024Day4.XmasLetter.S
 import utils.Grid
-
-enum class XmasDirection { NW, N, NE, W, E, SW, S, SE }
-
-val dummyCoordinate = Coordinate(y = -1, x = -1)
 
 class Year2024Day4 : Day {
 
@@ -96,6 +94,10 @@ class Year2024Day4 : Day {
             else -> Noise(coordinate = coordinate)
         }
     }
+
+    enum class XmasDirection { NW, N, NE, W, E, SW, S, SE }
+
+    val dummyCoordinate = Coordinate(y = -1, x = -1)
 
     sealed class XmasLetter {
         abstract val coordinate: Coordinate
@@ -257,7 +259,7 @@ class Year2024Day4 : Day {
     data class Xmas(
         val x: X,
         val m: M,
-        val a: A = A(coordinate = dummyCoordinate),
-        val s: S = S(coordinate = dummyCoordinate)
+        val a: A = A(coordinate = dummy),
+        val s: S = S(coordinate = dummy)
     )
 }
