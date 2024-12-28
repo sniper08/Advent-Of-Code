@@ -59,6 +59,14 @@ data class Coordinate(val x: Int, val y: Int) {
 
     companion object {
         val dummy = Coordinate(y = Int.MIN_VALUE, x = Int.MIN_VALUE)
+
+        fun fromRaw(rawCoordinate: String): Coordinate {
+            val split = rawCoordinate.split(",")
+            return Coordinate(
+                x = split.first().toInt(),
+                y = split.last().toInt()
+            )
+        }
     }
 
     fun newByDirection(direction: LinearDirection) = when(direction) {

@@ -7,8 +7,8 @@ import AllSidesDirection
 import AllSidesDirection.*
 
 class Grid<T>(
-    private val ySize: Int,
-    private val xSize: Int,
+    val ySize: Int,
+    val xSize: Int,
     init: (Coordinate) -> T
 ) {
 
@@ -26,12 +26,17 @@ class Grid<T>(
         }
     }
 
+    fun get(y: Int, x: Int): T? = grid[y]?.get(x)
+    fun set(y: Int, x: Int, element: T) {
+        grid[y]?.put(key = x, value = element)
+    }
     operator fun get(coordinate: Coordinate): T? = grid[coordinate.y]?.get(coordinate.x)
     operator fun set(coordinate: Coordinate, element: T) {
         grid[coordinate.y]?.put(key = coordinate.x, value = element)
     }
 
     fun getElement(coordinate: Coordinate): T = get(coordinate) ?: error("Not found in grid!")
+    fun getElement(y: Int, x: Int): T = get(y, x) ?: error("Not found in grid!")
 
     fun flatten(): List<T> =
         grid.flatMap { row ->
