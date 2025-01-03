@@ -13,6 +13,7 @@ import parser.inputCleaner
 import solutions._2024.Year2024Day15.WarehouseSection
 import solutions._2024.Year2024Day15.WarehouseSection.*
 import utils.Grid
+import utils.GridElement
 
 typealias Warehouse = Grid<WarehouseSection>
 
@@ -31,11 +32,7 @@ class Year2024Day15 : Day {
         val directions = createDirections(input = input)
 
         val robot = Robot()
-        val warehouse = Warehouse(
-            ySize = rawWarehouse.count(),
-            xSize = rawWarehouse.first().length
-        ) { coordinate ->
-            val rawChar = rawWarehouse.elementAt(coordinate.y)[coordinate.x]
+        val warehouse = Warehouse(input = rawWarehouse) { coordinate, rawChar ->
             when (rawChar) {
                 '#' -> Wall(coordinate = coordinate)
                 'O' -> Box(coordinate = coordinate)
@@ -162,8 +159,7 @@ class Year2024Day15 : Day {
         fun push(direction: LinearDirection, warehouse: Warehouse): Boolean
     }
 
-    sealed class WarehouseSection {
-        abstract val coordinate: Coordinate
+    sealed class WarehouseSection : GridElement {
 
         data class Wall(
             override val coordinate: Coordinate

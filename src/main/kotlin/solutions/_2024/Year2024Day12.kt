@@ -8,6 +8,7 @@ import createAnsi
 import day.Day
 import solutions._2024.Year2024Day12.GardenPlot
 import utils.Grid
+import utils.GridElement
 
 typealias Garden = Grid<GardenPlot>
 
@@ -45,7 +46,7 @@ class Year2024Day12 : Day {
      */
     override fun part2(input: Sequence<String>): String {
         val garden = createGarden(input)
-        garden.print()
+       // garden.print()
 
         val allGardenPlots = garden.flatten()
         var nextUncounted = allGardenPlots.firstOrNull { !it.counted }
@@ -56,7 +57,7 @@ class Year2024Day12 : Day {
             nextUncounted.computeRegionWithDiscount(garden = garden, region = region)
             totalPrice += region.price()
 
-            println(region)
+           // println(region)
 
             nextUncounted = allGardenPlots.firstOrNull { !it.counted }
         }
@@ -64,12 +65,9 @@ class Year2024Day12 : Day {
         return "$totalPrice"
     }
 
-    private fun createGarden(input: Sequence<String>) = Garden(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
+    private fun createGarden(input: Sequence<String>) = Garden(input = input) { coordinate, rawChar ->
         GardenPlot(
-            plantType = input.elementAt(coordinate.y)[coordinate.x],
+            plantType = rawChar,
             coordinate = coordinate
         )
     }
@@ -97,8 +95,8 @@ class Year2024Day12 : Day {
 
     data class GardenPlot(
         val plantType: Char,
-        val coordinate: Coordinate
-    ) {
+        override val coordinate: Coordinate
+    ) : GridElement {
         var counted = false
             private set
 

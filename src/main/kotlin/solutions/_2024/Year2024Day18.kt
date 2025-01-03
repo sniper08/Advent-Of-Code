@@ -8,6 +8,7 @@ import createAnsi
 import day.Day
 import solutions._2024.Year2024Day18.MemorySpace
 import utils.Grid
+import utils.GridElement
 import java.util.*
 
 typealias Computer = Grid<MemorySpace>
@@ -45,7 +46,7 @@ class Year2024Day18 : Day {
                 }
 
             //println()
-            println("($lastRawCoordinate)")
+            //println("($lastRawCoordinate)")
             val leastAmountOfSteps = computer.findLeastAmountOfSteps(printing = false)
 
             if (leastAmountOfSteps == Long.MAX_VALUE) {
@@ -54,7 +55,7 @@ class Year2024Day18 : Day {
             amountOfBytes++
 
             if (coordinateFound != null) {
-                computer.print(blockingCoordinate = Coordinate.fromRaw(rawCoordinate = lastRawCoordinate))
+               // computer.print(blockingCoordinate = Coordinate.fromRaw(rawCoordinate = lastRawCoordinate))
             }
         }
 
@@ -78,16 +79,23 @@ class Year2024Day18 : Day {
     }
 
     private fun Computer.findLeastAmountOfSteps(printing: Boolean): Long {
-        val weightControl = Grid(ySize = ySize, xSize = xSize) { Long.MAX_VALUE }
-        weightControl.set(y = 0, x = 0, element = 0)
+        class Cost(var cost: Long = Long.MAX_VALUE) : GridElement {
+            override val coordinate: Coordinate = Coordinate.dummy
+        }
+
+        val costControl = Grid(ySize = ySize, xSize = xSize) { Cost(cost = Long.MAX_VALUE) }
+        costControl.getElement(y = 0, x = 0).cost = 0
 
         var route = 0
         val allSpaces = flatten()
 
         val pq = PriorityQueue<MemorySpace> { a, b ->
+            val aCost = costControl.getElement(coordinate = a.coordinate).cost
+            val bCost = costControl.getElement(coordinate = b.coordinate).cost
+
             when {
-                weightControl.getElement(coordinate = a.coordinate) < weightControl.getElement(coordinate = b.coordinate) -> -1
-                weightControl.getElement(coordinate = a.coordinate) > weightControl.getElement(coordinate = b.coordinate) -> 1
+                aCost < bCost -> -1
+                aCost > bCost -> 1
                 else -> 0
             }
         }.apply {
@@ -104,18 +112,18 @@ class Year2024Day18 : Day {
 
         while (pq.isNotEmpty()) {
             val currentMemorySpace = pq.poll()
-            val currentCost = weightControl.getElement(currentMemorySpace.coordinate)
+            val currentCost = costControl.getElement(currentMemorySpace.coordinate).cost
             val currentRoute = currentMemorySpace.routes.lastOrNull() ?: 0
 
             for (memorySpace in currentMemorySpace.getNextMemorySpaces(computer = this)) {
                 val nextCost = currentCost + 1
-                if (weightControl.getElement(coordinate = memorySpace.coordinate) > nextCost) {
+                if (costControl.getElement(coordinate = memorySpace.coordinate).cost > nextCost) {
                     val newRoute = ++route
                     if (printing) {
                         memorySpace.routes.add(newRoute)
                     }
                     memorySpace.visited = true
-                    weightControl.set(coordinate = memorySpace.coordinate, element = nextCost)
+                    costControl.getElement(coordinate = memorySpace.coordinate).cost = nextCost
 
                     if (printing) {
                         allSpaces
@@ -136,7 +144,7 @@ class Year2024Day18 : Day {
             }
         }
 
-        val leastAmountOfSteps = weightControl.getElement(coordinate = Coordinate(y = ySize - 1, x = xSize - 1))
+        val leastAmountOfSteps = costControl.getElement(coordinate = Coordinate(y = ySize - 1, x = xSize - 1)).cost
 
         if (leastAmountOfSteps < Long.MAX_VALUE && printing) {
             val correctRoute = getElement(coordinate = Coordinate(y = ySize - 1, x = xSize - 1)).routes.first()
@@ -164,11 +172,11 @@ class Year2024Day18 : Day {
     }
 
     data class MemorySpace(
-        val coordinate: Coordinate,
+        override val coordinate: Coordinate,
         var corrupted: Boolean = false,
         var visited: Boolean = false,
         var inPath: Boolean = false
-    ) {
+    ) : GridElement {
         val routes = mutableSetOf<Int>()
 
         fun getNextMemorySpaces(computer: Computer): Set<MemorySpace> =

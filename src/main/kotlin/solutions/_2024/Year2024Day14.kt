@@ -6,6 +6,7 @@ import ANSI_RESET
 import Coordinate
 import day.Day
 import utils.Grid
+import utils.GridElement
 
 class Year2024Day14 : Day {
 
@@ -165,13 +166,11 @@ class Year2024Day14 : Day {
             }
 
             if (step == printStep) {
-                println("$ANSI_RED----------------------------------- Step $step ---------------------------------$ANSI_RESET")
-                floor.print()
-                printStep += xLimit
+//                println("$ANSI_RED----------------------------------- Step $step ---------------------------------$ANSI_RESET")
+//                floor.print()
+//                printStep += xLimit
             }
         }
-
-
 
         return ""
     }
@@ -186,9 +185,14 @@ class Year2024Day14 : Day {
         }
     }
 
-    data class Tile(val robots: MutableList<Robot>) {
+    data class Tile(
+        val robots: MutableList<Robot>
+    ) : GridElement {
+
+        override val coordinate: Coordinate = Coordinate.dummy
         override fun toString(): String = if (robots.isEmpty()) "." else "${robots.size}"
     }
+
     data class Robot(
         val coordinate: Coordinate,
         val velX: Int,

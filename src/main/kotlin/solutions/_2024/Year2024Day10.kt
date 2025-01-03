@@ -9,6 +9,7 @@ import solutions._2024.Year2024Day10.MapSection
 import solutions._2024.Year2024Day10.MapSection.Hill
 import solutions._2024.Year2024Day10.MapSection.TrailHead
 import utils.Grid
+import utils.GridElement
 
 private typealias TopographicMap = Grid<MapSection>
 
@@ -33,6 +34,10 @@ class Year2024Day10 : Day {
         return "$scoresSum"
     }
 
+    /**
+     * Find the sum of ratings per hiking trail, a rating is the amount of different trails found per TrailHead
+     * at height 0. A Hiking Trail starts at height 0 and moves at increments of 1 till it reaches height 9
+     */
     override fun part2(input: Sequence<String>): String {
         val trailHeads = mutableSetOf<TrailHead>()
         val map = crateTopographicMap(input, trailHeads)
@@ -42,41 +47,34 @@ class Year2024Day10 : Day {
             val trailEnds = trailHead.findTrailEnds(map = map, nextByHeightPerHillMap = nextByHeightPerHillMap)
                 .onEach { it.key.isTrailEnd = true }
 
-            println("Trail head at ${trailHead.coordinate}")
-            trailEnds.forEach {
-                println("${it.key.coordinate} -> ${it.value}")
-            }
+//            println("Trail head at ${trailHead.coordinate}")
+//            trailEnds.forEach {
+//                println("${it.key.coordinate} -> ${it.value}")
+//            }
             val totalTrails = trailEnds.values.sum()
-            println("Total trails: $totalTrails")
+//            println("Total trails: $totalTrails")
 
-            map.print { mapSection ->
-                val string = mapSection.toString()
-
-                when {
-                    mapSection == trailHead -> "$ANSI_GREEN$string$ANSI_RESET"
-                    mapSection is Hill && trailEnds.contains(mapSection) -> "$ANSI_RED$string$ANSI_RESET"
-                    else -> string
-                }
-            }
-            println("-------------------------")
+//            map.print { mapSection ->
+//                val string = mapSection.toString()
+//
+//                when {
+//                    mapSection == trailHead -> "$ANSI_GREEN$string$ANSI_RESET"
+//                    mapSection is Hill && trailEnds.contains(mapSection) -> "$ANSI_RED$string$ANSI_RESET"
+//                    else -> string
+//                }
+//            }
+//            println("-------------------------")
             totalTrails
         }
 
         return "$ratingsSum"
     }
 
-    /**
-     * Find the sum of ratings per hiking trail, a rating is the amount of different trails found per TrailHead
-     * at height 0. A Hiking Trail starts at height 0 and moves at increments of 1 till it reaches height 9
-     */
     private fun crateTopographicMap(
         input: Sequence<String>,
         trailHeads: MutableSet<TrailHead>
-    ) = TopographicMap(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
-        val height = input.elementAt(coordinate.y)[coordinate.x].digitToInt()
+    ) = TopographicMap(input = input) { coordinate, rawChar ->
+        val height = rawChar.digitToInt()
 
         if (height == 0) {
             TrailHead(coordinate = coordinate)
@@ -86,8 +84,7 @@ class Year2024Day10 : Day {
         }
     }
 
-    sealed class MapSection {
-        abstract val coordinate: Coordinate
+    sealed class MapSection : GridElement {
         abstract val height: Int
 
         protected val trailEndHeight = 9

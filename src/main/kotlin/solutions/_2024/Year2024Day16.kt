@@ -13,6 +13,7 @@ import solutions._2024.Year2024Day16.MazeSection
 import solutions._2024.Year2024Day16.MazeSection.PathTile
 import solutions._2024.Year2024Day16.MazeSection.Wall
 import utils.Grid
+import utils.GridElement
 import java.util.*
 
 typealias Maze = Grid<MazeSection>
@@ -52,17 +53,12 @@ class Year2024Day16 : Day {
             .map { it.coordinate }
             .toSet()
 
-        maze.plotAllTilesInBestPaths(pathTilesCoordinates = allPathTilesInABestPaths)
+     //   maze.plotAllTilesInBestPaths(pathTilesCoordinates = allPathTilesInABestPaths)
 
         return "${allPathTilesInABestPaths.size}"
     }
 
-    private fun createMaze(input: Sequence<String>) = Maze(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
-        val rawChar = input.elementAt(coordinate.y)[coordinate.x]
-
+    private fun createMaze(input: Sequence<String>) = Maze(input = input) { coordinate, rawChar ->
         when (rawChar) {
             '#' -> Wall(coordinate = coordinate)
             'S' -> PathTile(coordinate = coordinate, isStart = true, currentDirection = EAST)
@@ -228,7 +224,10 @@ class Year2024Day16 : Day {
         var pointsWest: Long = Long.MAX_VALUE,
         var pointsEast: Long = Long.MAX_VALUE,
         var pointsSouth: Long = Long.MAX_VALUE
-    ) {
+    ) : GridElement {
+
+        override val coordinate: Coordinate = Coordinate.dummy
+
         fun checkFor(nextPath: Path, allowMultiple: Boolean): Boolean {
             return checkFrom(
                 direction = nextPath.tiles.last().currentDirection ?: return false,
@@ -248,8 +247,7 @@ class Year2024Day16 : Day {
         }
     }
 
-    sealed class MazeSection {
-        abstract val coordinate: Coordinate
+    sealed class MazeSection : GridElement {
 
         data class Wall(
             override val coordinate: Coordinate

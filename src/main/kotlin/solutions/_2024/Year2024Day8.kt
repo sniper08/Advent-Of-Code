@@ -9,6 +9,7 @@ import solutions._2024.Year2024Day8.FrequencySection
 import solutions._2024.Year2024Day8.FrequencySection.Antenna
 import solutions._2024.Year2024Day8.FrequencySection.Empty
 import utils.Grid
+import utils.GridElement
 
 typealias FrequencyGrid = Grid<FrequencySection>
 
@@ -42,12 +43,7 @@ class Year2024Day8 : Day {
         return "$antinodesCount"
     }
 
-    private fun createFrequencyGrid(input: Sequence<String>) = FrequencyGrid(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
-        val rawChar = input.elementAt(coordinate.y)[coordinate.x]
-
+    private fun createFrequencyGrid(input: Sequence<String>) = FrequencyGrid(input = input) { coordinate, rawChar ->
         when (rawChar) {
             '.', '#' -> Empty(coordinate = coordinate)
             else -> Antenna(coordinate = coordinate, symbol = rawChar)
@@ -110,8 +106,7 @@ class Year2024Day8 : Day {
         }
     }
 
-    sealed class FrequencySection {
-        abstract val coordinate: Coordinate
+    sealed class FrequencySection : GridElement {
         var isAntinode = false
 
         data class Empty(override val coordinate: Coordinate) : FrequencySection() {

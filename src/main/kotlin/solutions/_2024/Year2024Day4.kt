@@ -11,6 +11,7 @@ import solutions._2024.Year2024Day4.XmasDirection.S as SO
 import solutions._2024.Year2024Day4.XmasLetter.*
 import solutions._2024.Year2024Day4.XmasLetter.S
 import utils.Grid
+import utils.GridElement
 
 class Year2024Day4 : Day {
 
@@ -32,16 +33,16 @@ class Year2024Day4 : Day {
                 foundXmasCombinations.addAll(letterX.findXmasCombinations(grid = grid))
             }
 
-        grid.print { letter ->
-            val string = letter.toString()
-            when (letter) {
-                is X -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
-                is M -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
-                is A -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
-                is S -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
-                else -> string
-            }
-        }
+//        grid.print { letter ->
+//            val string = letter.toString()
+//            when (letter) {
+//                is X -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
+//                is M -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
+//                is A -> if (letter.inXmasCombination) "$ANSI_RED$string$ANSI_RESET" else string
+//                is S -> if (letter.inXmasCombination) "$ANSI_GREEN$string$ANSI_RESET" else string
+//                else -> string
+//            }
+//        }
 
         return "${foundXmasCombinations.count()}"
     }
@@ -66,27 +67,22 @@ class Year2024Day4 : Day {
                 if (isInCenterOfXmasCross) 1 else 0L
             }
 
-        println()
-        grid.print { letter ->
-            val string = letter.toString()
-            when (letter) {
-                is M -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
-                is A -> if (letter.inXmasCross) "$ANSI_RED$string$ANSI_RESET" else string
-                is S -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
-                else -> string
-            }
-        }
+//        println()
+//        grid.print { letter ->
+//            val string = letter.toString()
+//            when (letter) {
+//                is M -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
+//                is A -> if (letter.inXmasCross) "$ANSI_RED$string$ANSI_RESET" else string
+//                is S -> if (letter.inXmasCross) "$ANSI_GREEN$string$ANSI_RESET" else string
+//                else -> string
+//            }
+//        }
 
         return "$xmasCrossCount"
     }
 
-    private fun createXmasGrid(input: Sequence<String>) = Grid<XmasLetter>(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
-        val rawLetter = input.elementAt(coordinate.y)[coordinate.x].toString()
-
-        when (rawLetter) {
+    private fun createXmasGrid(input: Sequence<String>) = Grid<XmasLetter>(input = input) { coordinate, rawChar ->
+        when (rawChar.toString()) {
             "X" -> X(coordinate = coordinate)
             "M" -> M(coordinate = coordinate)
             "A" -> A(coordinate = coordinate)
@@ -99,9 +95,7 @@ class Year2024Day4 : Day {
 
     val dummyCoordinate = Coordinate(y = -1, x = -1)
 
-    sealed class XmasLetter {
-        abstract val coordinate: Coordinate
-
+    sealed class XmasLetter : GridElement {
         var inXmasCombination = false
             protected set
         var inXmasCross = false

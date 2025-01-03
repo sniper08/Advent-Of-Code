@@ -6,11 +6,27 @@ import LinearDirection.*
 import AllSidesDirection
 import AllSidesDirection.*
 
-class Grid<T>(
+interface GridElement {
+    val coordinate: Coordinate
+}
+
+class Grid<T : GridElement>(
     val ySize: Int,
     val xSize: Int,
     init: (Coordinate) -> T
 ) {
+    constructor(
+        input: Sequence<String>,
+        init: (Coordinate, Char) -> T
+    ) : this(
+        ySize = input.count(),
+        xSize = input.first().length,
+        init = { coordinate ->
+            val rawChar = input.elementAt(coordinate.y)[coordinate.x]
+
+            init(coordinate, rawChar)
+        }
+    )
 
     private val grid = buildMap<Int, MutableMap<Int,T>> {
         (0 until ySize).map { y ->

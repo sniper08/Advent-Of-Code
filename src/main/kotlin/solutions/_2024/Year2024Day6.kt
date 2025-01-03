@@ -12,6 +12,7 @@ import solutions._2024.Year2024Day6.LabSection
 import solutions._2024.Year2024Day6.LabSection.Empty
 import solutions._2024.Year2024Day6.LabSection.Obstruction
 import utils.Grid
+import utils.GridElement
 
 typealias Lab = Grid<LabSection>
 
@@ -79,12 +80,7 @@ class Year2024Day6 : Day {
         return "$stuckInLoopCountAfterAddingObstruction"
     }
 
-    private fun createLab(input: Sequence<String>, guard: Guard) = Grid<LabSection>(
-        ySize = input.count(),
-        xSize = input.first().length
-    ) { coordinate ->
-        val rawChar = input.elementAt(coordinate.y)[coordinate.x]
-
+    private fun createLab(input: Sequence<String>, guard: Guard) = Grid<LabSection>(input = input) { coordinate, rawChar ->
         when (rawChar) {
             '.' -> Empty(coordinate = coordinate)
             '#' -> Obstruction(coordinate = coordinate)
@@ -136,8 +132,7 @@ class Year2024Day6 : Day {
 
     data class Visited(val linearDirection: LinearDirection)
 
-    sealed class LabSection {
-        abstract val coordinate: Coordinate
+    sealed class LabSection : GridElement {
 
         data class Empty(
             override val coordinate: Coordinate,
