@@ -8,7 +8,19 @@ import AllSidesDirection.*
 
 interface GridElement {
     val coordinate: Coordinate
+    val y get() = coordinate.y
+    val x get() = coordinate.x
 }
+
+data class VerticalNeighbours<T : GridElement>(
+    val northNeighbour: T?,
+    val southNeighbour: T?
+)
+
+data class HorizontalNeighbours<T : GridElement>(
+    val westNeighbour: T?,
+    val eastNeighbour: T?
+)
 
 class Grid<T : GridElement>(
     val ySize: Int,
@@ -98,6 +110,16 @@ class Grid<T : GridElement>(
         SW to this[Coordinate(y = coordinate.y + 1, x = coordinate.x - 1)],
         S to this[Coordinate(y = coordinate.y + 1, x = coordinate.x)],
         SE to this[Coordinate(y = coordinate.y + 1, x = coordinate.x + 1)],
+    )
+
+    fun findVerticalNeighbours(coordinate: Coordinate) = VerticalNeighbours(
+        northNeighbour = findLinearNeighbour(direction = NORTH, coordinate = coordinate),
+        southNeighbour = findLinearNeighbour(direction = SOUTH, coordinate = coordinate)
+    )
+
+    fun findHorizontalNeighbours(coordinate: Coordinate) = HorizontalNeighbours(
+        westNeighbour = findLinearNeighbour(direction = WEST, coordinate = coordinate),
+        eastNeighbour = findLinearNeighbour(direction = EAST, coordinate = coordinate)
     )
 
     fun yLastIndex() = ySize - 1
