@@ -226,8 +226,6 @@ class Year2024Day16 : Day {
         var pointsSouth: Long = Long.MAX_VALUE
     ) : GridElement {
 
-        override val coordinate: Coordinate = Coordinate.dummy
-
         fun checkFor(nextPath: Path, allowMultiple: Boolean): Boolean {
             return checkFrom(
                 direction = nextPath.tiles.last().currentDirection ?: return false,

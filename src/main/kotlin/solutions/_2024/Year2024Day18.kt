@@ -7,6 +7,7 @@ import Coordinate
 import createAnsi
 import day.Day
 import solutions._2024.Year2024Day18.MemorySpace
+import utils.Cost
 import utils.Grid
 import utils.GridElement
 import java.util.*
@@ -79,10 +80,6 @@ class Year2024Day18 : Day {
     }
 
     private fun Computer.findLeastAmountOfSteps(printing: Boolean): Long {
-        class Cost(var cost: Long = Long.MAX_VALUE) : GridElement {
-            override val coordinate: Coordinate = Coordinate.dummy
-        }
-
         val costControl = Grid(ySize = ySize, xSize = xSize) { Cost(cost = Long.MAX_VALUE) }
         costControl.getElement(y = 0, x = 0).cost = 0
 

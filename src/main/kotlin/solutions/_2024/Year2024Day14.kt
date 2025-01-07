@@ -188,8 +188,6 @@ class Year2024Day14 : Day {
     data class Tile(
         val robots: MutableList<Robot>
     ) : GridElement {
-
-        override val coordinate: Coordinate = Coordinate.dummy
         override fun toString(): String = if (robots.isEmpty()) "." else "${robots.size}"
     }
 

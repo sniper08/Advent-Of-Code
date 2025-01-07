@@ -8,9 +8,12 @@ import AllSidesDirection.*
 
 interface GridElement {
     val coordinate: Coordinate
+        get() = Coordinate.dummy
     val y get() = coordinate.y
     val x get() = coordinate.x
 }
+
+class Cost(var cost: Long = Long.MAX_VALUE) : GridElement
 
 data class VerticalNeighbours<T : GridElement>(
     val northNeighbour: T?,
