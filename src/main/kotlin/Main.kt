@@ -5,7 +5,7 @@ import solutions._2024.*
 
 fun main(args: Array<String>) {
     Runner().run(
-        Year2024Day21()
+        Year2024Day22()
     )
 }
 
