@@ -4,9 +4,6 @@ import day.Day
 
 class Year2024Day7 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 7
-
     /**
      * Sum of the test values of equation that can be proved with + or * as operators
      */

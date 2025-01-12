@@ -10,9 +10,6 @@ import utils.GridElement
 
 class Year2024Day14 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 14
-
     /**
      * Find the safety factor by multiplying values per quadrant
      */

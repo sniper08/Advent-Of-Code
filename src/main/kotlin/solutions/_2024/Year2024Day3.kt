@@ -3,8 +3,6 @@ package solutions._2024
 import day.Day
 
 class Year2024Day3 : Day {
-    override val year: Int = 2024
-    override val day: Int = 3
 
     private val mulRegex = Regex("mul\\((\\d+),(\\d+)\\)")
 

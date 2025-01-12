@@ -14,9 +14,6 @@ typealias Garden = Grid<GardenPlot>
 
 class Year2024Day12 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 12
-
     /**
      * Calculate price per garden region, area * perimeter, perimeter counts every garden plot side
      */

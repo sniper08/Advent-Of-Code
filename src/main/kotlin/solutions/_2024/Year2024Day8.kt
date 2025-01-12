@@ -15,9 +15,6 @@ typealias FrequencyGrid = Grid<FrequencySection>
 
 class Year2024Day8 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 8
-
     /**
      * Find antinodes for a pair of antennae, antinodes must be at exactly doubled the manhattan distance of the pair
      */

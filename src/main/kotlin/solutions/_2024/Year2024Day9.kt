@@ -6,9 +6,6 @@ import solutions._2024.Year2024Day9.Package.File
 
 class Year2024Day9 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 9
-
     /**
      * Checksum of file idNumber * id in array after moving idNumbers one by one
      */

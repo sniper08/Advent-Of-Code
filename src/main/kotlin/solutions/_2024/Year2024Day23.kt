@@ -4,9 +4,6 @@ import day.Day
 
 class Year2024Day23 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 23
-
     override fun part1(input: Sequence<String>): String {
         val connections = createConnections(input = input)
         val lanParties = mutableSetOf<LanParty>()

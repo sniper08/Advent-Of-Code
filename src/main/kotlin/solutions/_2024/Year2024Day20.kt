@@ -18,9 +18,6 @@ typealias RaceTrack = Grid<RaceTrackSection>
 
 class Year2024Day20 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 20
-
     /**
      * Find sum of all cheats that last 2 picoseconds and saved more than 100 picoseconds
      */

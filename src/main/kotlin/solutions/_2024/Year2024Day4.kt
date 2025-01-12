@@ -1,22 +1,16 @@
 package solutions._2024
 
-import ANSI_GREEN
-import ANSI_RED
-import ANSI_RESET
 import Coordinate
 import Coordinate.Companion.dummy
 import day.Day
 import solutions._2024.Year2024Day4.XmasDirection.*
-import solutions._2024.Year2024Day4.XmasDirection.S as SO
 import solutions._2024.Year2024Day4.XmasLetter.*
 import solutions._2024.Year2024Day4.XmasLetter.S
 import utils.Grid
 import utils.GridElement
+import solutions._2024.Year2024Day4.XmasDirection.S as SO
 
 class Year2024Day4 : Day {
-
-    override val year: Int = 2024
-    override val day: Int = 4
 
     /**
      * Find all XMAS in all directions

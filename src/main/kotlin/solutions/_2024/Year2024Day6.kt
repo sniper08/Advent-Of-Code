@@ -18,9 +18,6 @@ typealias Lab = Grid<LabSection>
 
 class Year2024Day6 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 6
-
     /**
      * Find all sections visited by Guard
      */

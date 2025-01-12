@@ -15,9 +15,6 @@ private typealias TopographicMap = Grid<MapSection>
 
 class Year2024Day10 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 10
-
     /**
      * Find the sum of scores per hiking trail, a score is the amount of trails found per TrailHead at height 0
      * A Hiking Trail starts at height 0 and moves at increments of 1 till it reaches height 9

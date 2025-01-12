@@ -19,9 +19,6 @@ typealias Warehouse = Grid<WarehouseSection>
 
 class Year2024Day15 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 15
-
     override val lineJumpsInput: Int = 2
 
     /**

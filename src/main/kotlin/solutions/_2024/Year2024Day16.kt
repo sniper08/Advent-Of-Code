@@ -20,9 +20,6 @@ typealias Maze = Grid<MazeSection>
 
 class Year2024Day16 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 16
-
     /**
      * Find the cost the best path reindeer could take
      */

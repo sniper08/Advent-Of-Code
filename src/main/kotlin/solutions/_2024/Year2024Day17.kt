@@ -7,9 +7,6 @@ import kotlin.math.pow
 
 class Year2024Day17 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 17
-
     override val lineJumpsInput: Int = 2
 
     /**

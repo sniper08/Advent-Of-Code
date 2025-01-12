@@ -16,9 +16,6 @@ typealias Computer = Grid<MemorySpace>
 
 class Year2024Day18 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 18
-
     override fun part1(input: Sequence<String>): String {
         val amountOfBytes = 1024
         val computer = createComputer()

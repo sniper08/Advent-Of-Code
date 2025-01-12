@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-runtime", "1.0-M1-1.4.0-rc")
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.4")
+    implementation("org.jetbrains.kotlin", "kotlin-reflect", "1.9.20")
     implementation("io.ksmt:ksmt-core:0.5.6")
     implementation("io.ksmt:ksmt-z3:0.5.6")
     implementation("org.jgrapht:jgrapht-core:1.5.2")

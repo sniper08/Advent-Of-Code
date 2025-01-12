@@ -6,9 +6,6 @@ import kotlin.math.min
 
 class Year2024Day19 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 19
-
     override val lineJumpsInput: Int = 2
 
     /**

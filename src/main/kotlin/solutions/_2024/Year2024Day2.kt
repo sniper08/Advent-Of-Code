@@ -5,9 +5,6 @@ import kotlin.math.abs
 
 class Year2024Day2 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 2
-
     /**
      * Find safe reports
      */

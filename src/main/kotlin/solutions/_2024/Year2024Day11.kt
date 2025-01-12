@@ -4,9 +4,6 @@ import day.Day
 
 class Year2024Day11 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 11
-
     /**
      * Number of stones after 25 blinks
      */

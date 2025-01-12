@@ -5,9 +5,6 @@ import solutions._2021.toDigits
 
 class Year2024Day22 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 22
-
     /**
      * Find sum of all the 2000th computed secret numbers
      */

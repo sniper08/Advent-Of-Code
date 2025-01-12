@@ -10,9 +10,6 @@ import parser.inputCleaner
 
 class Year2024Day13 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 13
-
     override val lineJumpsInput: Int = 2
 
     /**

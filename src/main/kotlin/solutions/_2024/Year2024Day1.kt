@@ -5,9 +5,6 @@ import kotlin.math.abs
 
 class Year2024Day1 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 1
-
     /**
      * Total Distance between lowest locationIDs
      */

@@ -10,9 +10,6 @@ import java.util.*
 
 class Year2024Day21 : Day {
 
-    override val year: Int = 2024
-    override val day: Int = 21
-
     /**
      * Calculate the sum of complexities per input after decoding 2 layers
      */
