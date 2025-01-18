@@ -2,15 +2,9 @@ package solutions._2015
 
 import createMD5Hash
 import day.Day
-import day.NOT_IMPLEMENTED_YET
-import kotlinx.coroutines.*
 import java.security.MessageDigest
-import kotlin.coroutines.CoroutineContext
 
 class Year2015Day4 : Day {
-
-    override val year: Int = 2015
-    override val day: Int = 4
 
     private val mD5finder = MD5finder()
 

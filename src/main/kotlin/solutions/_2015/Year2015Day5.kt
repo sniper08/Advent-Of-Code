@@ -4,9 +4,6 @@ import day.Day
 
 class Year2015Day5 : Day {
 
-    override val year: Int = 2015
-    override val day: Int = 5
-
     private val notAllowed = arrayOf("ab", "cd", "pq", "xy")
     private val double = ('a'..'z').map { it.toString() + it }.toTypedArray()
     private val vowels = arrayOf('a', 'e', 'i', 'o', 'u')

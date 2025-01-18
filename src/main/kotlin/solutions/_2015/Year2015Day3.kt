@@ -5,9 +5,6 @@ import day.Day
 
 class Year2015Day3 : Day {
 
-    override val year: Int = 2015
-    override val day: Int = 3
-
     /**
      * Houses Visited With Santa
      */

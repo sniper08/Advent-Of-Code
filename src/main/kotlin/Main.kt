@@ -6,7 +6,7 @@ import kotlin.reflect.full.primaryConstructor
 fun main(args: Array<String>) {
     Runner(year = 2024)
         .run(
-            20, 21, 22, 23
+            24
         )
 }
 

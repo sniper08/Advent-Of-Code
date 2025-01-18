@@ -8,9 +8,6 @@ import solutions._2015.Year2015Day6.LedLightInstruction.*
 
 class Year2015Day6 : Day {
 
-    override val year: Int = 2015
-    override val day: Int = 6
-
     /**
      * Count how many lights are on in the Christmas display (grid)
      */

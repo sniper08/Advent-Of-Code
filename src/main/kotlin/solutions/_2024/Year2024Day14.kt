@@ -1,7 +1,6 @@
 package solutions._2024
 
 import ANSI_GREEN
-import ANSI_RED
 import ANSI_RESET
 import Coordinate
 import day.Day

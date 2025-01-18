@@ -4,6 +4,9 @@ import day.Day
 
 class Year2024Day23 : Day {
 
+    /**
+     * Find count of 3-computer lan parties that contain at least one computer which name starts with "t"
+     */
     override fun part1(input: Sequence<String>): String {
         val connections = createConnections(input = input)
         val lanParties = mutableSetOf<LanParty>()
@@ -30,6 +33,9 @@ class Year2024Day23 : Day {
         return "$possibleNumberWhereChiefHistorianMightBe"
     }
 
+    /**
+     * Find the largest lan party possible
+     */
     override fun part2(input: Sequence<String>): String {
         val connections = createConnections(input = input)
 
